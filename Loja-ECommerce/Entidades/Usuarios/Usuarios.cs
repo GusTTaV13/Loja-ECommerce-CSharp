@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Loja_ECommerce.Entidades.Usuarios
+﻿namespace Loja_ECommerce.Entidades.Usuarios
 {
     public class Usuarios
     {

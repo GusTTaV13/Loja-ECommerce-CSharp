@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Loja_ECommerce.Entidades.Produtos;
-
-namespace Loja_ECommerce.Entidades.Produtos.ItensProduto
+﻿namespace Loja_ECommerce.Entidades.Produtos.ItensProduto
 {
     public class Celular : Produto
     {

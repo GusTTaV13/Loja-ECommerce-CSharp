@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Loja_ECommerce.Entidades.Categorias;
-using Loja_ECommerce.Entidades.Produtos;
-using Loja_ECommerce.Entidades.Usuarios;
+﻿using Loja_ECommerce.Entidades.Categorias;
 
 namespace Loja_ECommerce.Services
 {
@@ -14,11 +7,16 @@ namespace Loja_ECommerce.Services
         private List<Categorias> listaCategorias = new List<Categorias>();
         private int proximoId = 1;
 
-        public void AdicionarCategoria(Categorias categoria)
+        public void AdicionarCategoria(int id_categoria, string nome, string descricao, bool ativo)
         {
-            categoria.ID_Categorias = proximoId++;
+            if (listaCategorias.Exists(x => x.ID_Categorias == id_categoria))
+            {
+                Console.WriteLine("Categoria ja cadastrada");
+                return;
+            }
+            Categorias categoria = new Categorias(proximoId++, nome, descricao, ativo);
             listaCategorias.Add(categoria);
-            Console.WriteLine("Categoria adicionada com sucesso!");
+            Console.WriteLine("Categoria Cadastrada com sucesso!");
         }
 
         public void RemoverCategoria(int id)

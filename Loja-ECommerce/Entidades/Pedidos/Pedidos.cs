@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Loja_ECommerce.Entidades.Pedidos
 {
@@ -15,6 +11,7 @@ namespace Loja_ECommerce.Entidades.Pedidos
         public required string Status { get; set; }
         public decimal Total { get; set; }
 
+        [SetsRequiredMembers]
         public Pedidos(int id_pedido, string status, decimal total)
         {
             ID_Pedido = id_pedido;

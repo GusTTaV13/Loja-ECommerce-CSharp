@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Loja_ECommerce.Entidades.Enderecos;
-using Loja_ECommerce.Entidades.Produtos;
-using Loja_ECommerce.Entidades.Usuarios;
+﻿using Loja_ECommerce.Entidades.Enderecos;
 
 namespace Loja_ECommerce.Services
 {

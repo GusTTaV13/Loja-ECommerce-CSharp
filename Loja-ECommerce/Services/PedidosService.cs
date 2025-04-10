@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Loja_ECommerce.Entidades.Pedidos;
-using Loja_ECommerce.Entidades.Produtos;
+﻿using Loja_ECommerce.Entidades.Pedidos;
 
 namespace Loja_ECommerce.Services
 {
@@ -13,11 +7,16 @@ namespace Loja_ECommerce.Services
         private List<Pedidos> listaPedidos = new List<Pedidos>();
         private int proximoId = 1;
 
-        public void AdicionarPedido(Pedidos pedido)
+        public void AdicionarPedido(int id_pedido, string status, decimal total)
         {
-            pedido.ID_Pedido = proximoId++;
+            if (listaPedidos.Exists(x => x.ID_Pedido == id_pedido))
+            {
+                Console.WriteLine("Pedido ja cadastrado");
+                return;
+            }
+            Pedidos pedido = new Pedidos(proximoId++, status, total);
             listaPedidos.Add(pedido);
-            Console.WriteLine("Pedido adicionado com sucesso!");
+            Console.WriteLine("Pedido Cadastrado com sucesso!");
         }
 
         public void RemoverPedido(int id)
@@ -43,6 +42,21 @@ namespace Loja_ECommerce.Services
             foreach (Pedidos item in listaPedidos)
             {
                 item.ExibirDetalhesPedidos();
+            }
+        }
+        public void AlterarPedido(int id, string novoStatus, decimal novoTotal)
+        {
+            Pedidos pedido = listaPedidos.Find(x => x.ID_Pedido == id);
+            if (pedido != null)
+            {
+                pedido.Status = novoStatus;
+                pedido.Total = novoTotal;
+
+            }
+            else
+            {
+                Console.WriteLine("Pedido não encontrado");
+
             }
         }
     }

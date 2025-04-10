@@ -1,33 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Loja_ECommerce.Entidades.Categorias;
-using Loja_ECommerce.Entidades.ItensPedido;
-using Loja_ECommerce.Entidades.Produtos;
+﻿using Loja_ECommerce.Entidades.ItensPedido;
 
 namespace Loja_ECommerce.Services
 {
     public class ItensPedidoService
     {
-      
+
         private List<ItensPedido> listaItensPedidos = new List<ItensPedido>();
         private int proximoId = 1;
 
-        public void AdicionarItensPedido(ItensPedido itenPedido)
+        public void AdicionarItemPedido(int id_itensPedido, int quantidade, decimal total, decimal subTotal)
         {
-            itenPedido.ID_ItensPedido = proximoId++;
-            listaItensPedidos.Add(itenPedido);
-            Console.WriteLine("Item Pedido adicionado com sucesso!");
+            if (listaItensPedidos.Exists(x => x.ID_ItensPedido ==  id_itensPedido))
+            {
+                Console.WriteLine("Item Pedido ja cadastrado");
+                return;
+            }
+            ItensPedido itemPedido = new ItensPedido(proximoId++, quantidade, total, subTotal);
+            listaItensPedidos.Add(itemPedido);
+            Console.WriteLine("Item do pedido Cadastrado com sucesso!");
         }
 
         public void RemoverItemPedido(int id)
         {
-            ItensPedido itenPedido = listaItensPedidos.Find(x => x.ID_ItensPedido == id);
-            if (itenPedido != null)
+            ItensPedido itemPedido = listaItensPedidos.Find(x => x.ID_ItensPedido == id);
+            if (itemPedido != null)
             {
-                listaItensPedidos.Remove(itenPedido);
+                listaItensPedidos.Remove(itemPedido);
             }
             else
             {
@@ -46,6 +44,20 @@ namespace Loja_ECommerce.Services
                 item.ExibirDetalhesItensPedido();
             }
         }
-    }
 
+        public void AlterarItensPedido(int id, int novaQuantidade, decimal novoTotal, decimal novoSubTotal)
+        {
+            ItensPedido itensPedido = listaItensPedidos.Find(x => x.ID_ItensPedido == id);
+            if (itensPedido != null)
+            {
+                itensPedido.Quantidade = novaQuantidade;
+                itensPedido.Total = novoTotal;
+                itensPedido.SubTotal = novoSubTotal;
+            }
+            else
+            {
+                Console.WriteLine("Item Pedido não encontrado");
+            }
+        }
+    }
 }
